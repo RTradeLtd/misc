@@ -8,7 +8,9 @@ The script was not written by us, all credits go to the original authors. GPLv3 
 
 Tested against Zabbix 4.0.3 and Dell PS6000's
 
-# README from the zip contained in the wiki
+The Template was modified to include graph prototypes for various stats, as well as fix some items that would not work with PS6000's that have a max of 16 disks.
+
+## README from the zip contained in the wiki
 
 Description
 -----------

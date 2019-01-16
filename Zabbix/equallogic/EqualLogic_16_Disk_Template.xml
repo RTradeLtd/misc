@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-01-16T18:55:13Z</date>
+    <date>2019-01-16T19:59:02Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -8161,7 +8161,7 @@
                     </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>{#SNMPVALE} Pool Space Percent Used</name>
+                            <name>{#SNMPVALUE} Pool Space Percent Used</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>

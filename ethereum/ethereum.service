@@ -1,0 +1,14 @@
+
+[Unit]
+Description=Starts our ethereum node
+After=network.target
+
+[Service]
+User=ethereum
+Group=ethereum
+Type=simple
+PIDFile=/var/run/geth.pid
+ExecStart=/boot_scripts/ethereum.sh
+
+[Install]
+WantedBy=multi-user.target

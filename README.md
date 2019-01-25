@@ -10,6 +10,10 @@ The ethereum folder contains a script, and associated systemd service file to ru
 
 The Zabbix folder contains templates used to monitor our systems in production.
 
+### apc-ups
+
+Contains a template to monitor APC UPS machines
+
 ### Cisco
 
 Contains a Cisco 2960s 24port switch template

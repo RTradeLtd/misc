@@ -24,8 +24,11 @@ if [[ "$SLATE_REPO" == "" ]]; then
     exit 1
 fi
 
+
 # change directory to slate repository
 cd "$SLATE_REPO" || exit
+# clean up old files
+rm -rf build build.tar
 
 # used to build slate to serve as static files
 bundle exec middleman build --clean
@@ -39,6 +42,12 @@ cd build || exit
 # to gateway.temporal.cloud/account.html
 # by trimming the leading / it will be redirected to the ipfs link instead
 find . -type f -name "*.html" -exec sed -i 's/href="\//href="/g' {} \;
+# do the same as the above for css files
+find . -type f -name "*.css" -exec sed -i 's/url("\//url("/g' {} \;
+# do the same for content links
+find . -type f -name "*.html" -exec sed -i 's/content="\//content="/g' {} \;
+# do the same for css fonts
+find . -type f -name "*.css" -exec sed -i 's/url("fonts/url("..\/fonts/g' {} \;
 
 # change back to parent directory
 cd .. || exit

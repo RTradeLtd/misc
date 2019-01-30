@@ -1,0 +1,14 @@
+---
+- hosts: "{{ hosts }}"
+  remote_user: "{{ user }}"
+  tasks:
+  - name: untar build file
+    command: tar xvf build.tar
+  - name: add to ipfs
+    shell: ipfs add -r -w /home/"{{ user }}"/build/*
+    environment:
+      IPFS_PATH: "{{ ipfs_path }}"
+  - name: add to ipfs cluster
+    shell: ipfs-cluster-ctl  add -r -w /home/"{{ user }}"/build/*
+    environment:
+      IPFS_CLUSTER_PATH: "{{ ipfs_cluster_path }}"

@@ -8,6 +8,8 @@
 REMOTE_USER="$1"
 REMOTE_HOST="$2"
 SLATE_REPO="$3"
+REMOTE_IPFS_PATH="$4"
+REMOTE_IPFS_CLUSTER_PATH="$5"
 
 if [[ "$REMOTE_HOST" == "" ]]; then
 	echo "first argument must be remote host to upload files to"
@@ -24,6 +26,15 @@ if [[ "$SLATE_REPO" == "" ]]; then
     exit 1
 fi
 
+if [[ "$REMOTE_IPFS_PATH" == "" ]]; then
+	echo "fourth argument must be the absolute path to the remote IPFS_PATH"
+	exit 1
+fi
+
+if [[ "$REMOTE_IPFS_CLUSTER_PATH" == "" ]]; then
+	echo "fifth argument must be the absolute path to the remote IPFS_CLUSTER_PATH"
+	exit 1
+fi
 
 # change directory to slate repository
 cd "$SLATE_REPO" || exit
@@ -57,3 +68,7 @@ tar cvf build.tar build
 
 # upload tarballed file to remote host
 scp build.tar "$REMOTE_USER"@"$REMOTE_HOST":~/
+
+# run ansible to auto add to ipfs and ipfs-cluster
+echo "please run the following command after the shell script exits"
+echo ansible-playbook slate_ipfs.yml --extra-vars "hosts=$REMOTE_HOST user=$REMOTE_USER ipfs_path=$REMOTE_IPFS_PATH ipfs_cluster_path=$REMOTE_IPFS_CLUSTER_PATH"

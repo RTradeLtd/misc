@@ -6,9 +6,14 @@
     command: tar xvf build.tar
   - name: add to ipfs
     shell: ipfs add -r -w /home/"{{ user }}"/build/*
+    # this allows us to register the output of the command to display after playbook completion
+    register: out
     environment:
       IPFS_PATH: "{{ ipfs_path }}"
   - name: add to ipfs cluster
     shell: ipfs-cluster-ctl  add -r -w /home/"{{ user }}"/build/*
     environment:
       IPFS_CLUSTER_PATH: "{{ ipfs_cluster_path }}"
+  # by having registered the output, we can easily determine the hashes needed to update dns records
+  - debug: var=out.stdout_lines
+

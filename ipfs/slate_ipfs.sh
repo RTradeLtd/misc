@@ -38,6 +38,7 @@ fi
 
 # change directory to slate repository
 cd "$SLATE_REPO" || exit
+
 # clean up old files
 rm -rf build build.tar
 
@@ -71,4 +72,4 @@ scp build.tar "$REMOTE_USER"@"$REMOTE_HOST":~/
 
 # run ansible to auto add to ipfs and ipfs-cluster
 echo "please run the following command after the shell script exits"
-echo ansible-playbook slate_ipfs.yml --extra-vars "hosts=$REMOTE_HOST user=$REMOTE_USER ipfs_path=$REMOTE_IPFS_PATH ipfs_cluster_path=$REMOTE_IPFS_CLUSTER_PATH"
+echo ansible-playbook slate_ipfs.yml --extra-vars \"hosts=$REMOTE_HOST user=$REMOTE_USER ipfs_path=$REMOTE_IPFS_PATH ipfs_cluster_path=$REMOTE_IPFS_CLUSTER_PATH\"

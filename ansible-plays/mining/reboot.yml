@@ -1,0 +1,12 @@
+---
+- hosts: mining
+  remote_user: rtrade
+  tasks:
+    - name: reboot hosts
+      reboot:
+    - name: start miner
+      become: true
+      systemd:
+        state: started
+        name: miner
+    

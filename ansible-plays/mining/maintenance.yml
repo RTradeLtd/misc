@@ -1,0 +1,22 @@
+---
+- hosts: mining
+  remote_user: rtrade
+  tasks:
+    - name: stop miner
+      become: true
+      systemd:
+        state: stopped
+        name: miner
+    - name: update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+    - name: reboot hosts
+      reboot:
+    - name: start miner
+      become: true
+      systemd:
+        state: started
+        name: miner
+    

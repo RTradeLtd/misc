@@ -1,0 +1,18 @@
+---
+- hosts: mining
+  remote_user: rtrade
+  become: true
+  tasks:
+    - name: mark miner as enabled
+      systemd:
+        enable: yes
+        masked: no
+        name: miner
+    - name: stop miner service
+      systemd:
+        state: stopped
+        name: miner
+    - name: start miner service
+      systemd:
+        state: started
+        name:  miner

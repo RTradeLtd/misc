@@ -1,0 +1,17 @@
+---
+- hosts: "{{ hosts }}"
+  remote_user: "rtrade"
+  become: true
+  tasks:
+    - name: copy syslog configuration
+      copy:
+        src: files/51-graylog.conf
+        dest: /etc/rsyslog.d/51-graylog.conf
+    - name: update hosts
+      lineinfile:
+        path: /etc/hosts
+        line: '{{ graylog_server_ip }} graylog'
+    - name: restart syslog
+      systemd:
+        state: restarted
+        name: rsyslog

@@ -1,0 +1,26 @@
+---
+- hosts: webinterface
+  vars:
+    # --extra-vars file_path="path/to/file.zip"
+    file_path: "{{ file_path }}"
+  remote_user: rtrade
+
+  tasks:
+    - name: remove previous install files
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /home/rtrade/Temporal_RTradeTechnologies-master
+        - /home/rtrade/package.tar.gz
+        - /home/rtrade/new_package
+        - /home/rtrade/Temporal_RTradeTechnologies-master.zip
+    - name: copy web interface zip file
+      copy:
+        src: "{{ file_path }}"
+        dest: /home/rtrade/Temporal_RTradeTechnologies-master.zip
+        owner: rtrade
+        group: rtrade
+    - name: install the web interface
+      script: /bin/bash /home/rtrade/install.sh
+      

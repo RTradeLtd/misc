@@ -1,0 +1,10 @@
+---
+- hosts: mining
+  remote_user: rtrade
+  become: true
+  tasks:
+    - name: start miner service
+      systemd:
+        state: stopped
+        name:  miner
+

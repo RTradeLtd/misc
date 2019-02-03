@@ -29,7 +29,7 @@ case "$1" in
         echo "enter encrpted drive to unmount, ie /dev/mapper/ipfs-data"
         read -r MOUNT_POINT
         echo "[INFO] unmounting drive"
-        sudo umount /dev/mapper/ipfs-data
+        sudo umount "$MOUNT_POINT"
         if [[ "$?" -ne 0 ]]; then
             echo "[ERROR] failed to unmount drive"
             exit 1

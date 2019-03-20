@@ -41,7 +41,7 @@ cd "$SLATE_REPO" || exit
 
 # clean up old files
 rm -rf build build.tar
-
+mkdir build
 # used to build slate to serve as static files
 bundle exec middleman build --clean
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=Starts bridg in background
+After=network.target
+
+[Service]
+User=<your-user-here>
+Group=<your-group-here>
+Type=simple
+PIDFile=/var/run/brigd.pid
+ExecStart=/boot_scripts/brig_manager.sh daemon-start
+ExecStop=/boot_scripts/brig_manager.sh damon-quit
+[Install]
+WantedBy=multi-user.target
